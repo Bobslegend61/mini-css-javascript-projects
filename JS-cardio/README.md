@@ -100,3 +100,16 @@ sortContacts(undefined, "DESC") ➞ []
 
 - An array with a single name should be trivially returned.
 - An empty array, or an input of null or undefined should return an empty array.
+
+7. `Compare Version Numbers`  
+   Version numbers are strings that are used to identify unique states of software products. A version number is in the format a.b.c.d. and so on where a, b, etc. are numeric strings separated by dots. These generally represent a hierarchy from major to minor changes. Given two version numbers version1 and version2, conclude which is the latest version number.
+
+```javascript
+compareVersionNumber('1.0.33', '1.0.27'); // 1
+
+compareVersionNumber('0.1', '1.0'); // -1
+
+compareVersionNumber('1.01', '1.001'); // 0
+
+compareVersionNumber('1.0', '1.0.0'); // 0
+```

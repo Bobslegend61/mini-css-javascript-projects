@@ -73,3 +73,13 @@ function sortContacts(nameArr, order = 'ASC') {
     );
   }
 }
+
+// 7. Compare version numbers
+function compareVersionNumbers(firstVersion, secondVersion) {
+  // Convert to float
+  const fV = parseFloat(firstVersion);
+  const sV = parseFloat(secondVersion);
+  return fV;
+}
+
+compareVersionNumbers('1.0.2', '1.1.2');
