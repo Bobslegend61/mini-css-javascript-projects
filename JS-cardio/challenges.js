@@ -76,10 +76,60 @@ function sortContacts(nameArr, order = 'ASC') {
 
 // 7. Compare version numbers
 function compareVersionNumbers(firstVersion, secondVersion) {
-  // Convert to float
-  const fV = parseFloat(firstVersion);
-  const sV = parseFloat(secondVersion);
-  return fV;
+  function checkGreater(a, b) {
+    if (a > b) {
+      return 1;
+    } else if (a < b) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+
+  // Split both versions into an array
+  firstVersion = firstVersion.split('.');
+  secondVersion = secondVersion.split('.');
+
+  if (firstVersion.length === secondVersion.length) {
+    for (let i = 0; i < firstVersion.length; i++) {
+      if (
+        checkGreater(parseInt(firstVersion[i]), parseInt(secondVersion[i])) !==
+        0
+      ) {
+        return checkGreater(
+          parseInt(firstVersion[i]),
+          parseInt(secondVersion[i])
+        );
+      }
+    }
+    return 0;
+  } else {
+    let longer = firstVersion.length > secondVersion.length ? 'fV' : 'sV';
+    for (let i = 0; i < 2; i++) {
+      if (
+        checkGreater(parseInt(firstVersion[i]), parseInt(secondVersion[i])) !==
+        0
+      ) {
+        return checkGreater(
+          parseInt(firstVersion[i]),
+          parseInt(secondVersion[i])
+        );
+      }
+    }
+
+    switch (longer) {
+      case 'fV':
+        if (parseInt(firstVersion[2]) > 0) {
+          return 1;
+        }
+      case 'sV':
+        if (parseInt(secondVersion[2]) > 0) {
+          return -1;
+        }
+      default:
+        return 0;
+    }
+  }
 }
 
-compareVersionNumbers('1.0.2', '1.1.2');
+console.log(compareVersionNumbers('1.0.0', '1.1.0'));
